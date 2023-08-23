@@ -27,6 +27,7 @@ public class ArrayDeque<T>
 	private void resize(int capacity) {
 		T[] a = (T[]) new Object[capacity];
 		System.arraycopy(items, 0, a, 0, size);
+		this.capacity = capacity;
 		items = a;
 	}
 	
@@ -99,12 +100,7 @@ public class ArrayDeque<T>
 		if (index < 0 || index > size - 1) {
 			return null;
 		}
-
-		int frontIndex = (nextFirst + 1) % capacity;
-		int backIndex = (nextLast - 1 + capacity) % capacity;
-
-		int transformedIndex = (index + frontIndex) % capacity;
-		return items[transformedIndex];	
+		return items[(nextFirst + 1 + index) % capacity];
 	}
 
 }
