@@ -36,43 +36,19 @@ public class Planet
 	}
 
 	public double calcForceExertedByX(Planet p) {
-		double dx = xxPos - p.xxPos;
-		double dy = yyPos - p.yyPos;
 
-		double sign;
-		if (dx < 0.0) {
-			sign = -1;
-		} else if (dx > 0.0) {
-			sign = +1;
-		} else {
-			return 0.0;
-		}
+		double r = calcDistance(p);
+		double F = calcForceExertedBy(p);
 
-		double r = this.calcDistance(p);
-		double cs = dx / r;
-
-		double Fx = this.calcForceExertedBy(p) * cs * sign;
-		return Fx;
+		return (p.xxPos - this.xxPos) / r * F;
 	}
 
 	public double calcForceExertedByY(Planet p) {
-		double dx = xxPos - p.xxPos;
-		double dy = yyPos - p.yyPos;
+		
+		double r = calcDistance(p);
+		double F = calcForceExertedBy(p);
 
-		double sign;
-		if (dy < 0.0) {
-			sign = -1;
-		} else if (dy > 0.0) {
-			sign = +1;
-		} else {
-			return 0.0;
-		}
-
-		double r = this.calcDistance(p);
-
-		double sin = dy / r;
-		double Fy = this.calcForceExertedBy(p) * sin * sign;
-		return Fy;
+		return (p.yyPos - this.yyPos) / r * F;
 	}
 
 
