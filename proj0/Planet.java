@@ -56,6 +56,9 @@ public class Planet
 
 		double FxNet = 0.0;
 		for (int i = 0; i < planets.length; ++i) {
+			if (this.equals(planets[i])) {
+				continue;
+			}
 			FxNet += this.calcForceExertedByX(planets[i]);
 		}
 		return FxNet;
@@ -64,6 +67,9 @@ public class Planet
 	public double calcNetForceExertedByY(Planet[] planets) {
 		double FyNet = 0.0;
 		for (int i = 0; i < planets.length; ++i) {
+			if (this.equals(planets[i])) {
+				continue;
+			}
 			FyNet += this.calcForceExertedByY(planets[i]);
 		}
 		return FyNet;
