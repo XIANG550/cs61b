@@ -79,9 +79,9 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        Node p = sentinel.next;
+        Node p = sentinel;
         for (int i = 0; i <= index; ++i) {
-            if (p != sentinel) {
+            if (p.next != sentinel) {
                 p = p.next;
             } else {
                 return null;
