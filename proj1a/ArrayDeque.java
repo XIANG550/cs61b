@@ -15,12 +15,21 @@ public class ArrayDeque<T>
 		size = 0;
 	}
 	public ArrayDeque(ArrayDeque other) {
-		this.items = other.items;
+		this.items = (T[]) other.items;
 		this.capacity = other.capacity;
 		this.nextFirst = other.nextFirst;
 		this.nextLast = other.nextLast;
 		this.size = other.size;
 	}
+
+	public ArrayDeque(ArrayDeque<T> other) {
+		items = (T[]) new Object[other.capacity];
+		System.arraycopy(other.items, 0, items, 0, other.capacity);
+		nextFirst = other.nextFirst;
+		nextLast = other.nextLast;
+		size = other.size;
+	}
+
 
 	private void resize(int capacity) {
 		T[] a = (T[]) new Object[capacity];
