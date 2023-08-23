@@ -34,7 +34,6 @@ public class ArrayDeque<T>
 		nextFirst = 0;
 		nextLast = size + 1;
 		items = a;
-
 	}
 	
 	public void addFirst(T item) {
@@ -89,6 +88,7 @@ public class ArrayDeque<T>
 		nextFirst = (nextFirst + 1) % capacity; 
 		size--;
 		T result = items[nextFirst];
+		items[nextFirst] = null;
 		if (capacity >= 16 && size < capacity / 4) {
 			resize(capacity / 2);
 		}
@@ -104,6 +104,7 @@ public class ArrayDeque<T>
 		nextLast = (nextLast - 1 + capacity) % capacity; 
 		size--;
 		T result = items[nextLast];
+		items[nextLast] = null;
 
 		if (capacity >= 16 && size < capacity / 4) {
 			resize(capacity / 2);
