@@ -28,7 +28,7 @@ public class ArrayDeque<T>
 		T[] a = (T[]) new Object[capacity];
 		// System.arraycopy() will not work because the array is circular
 		for (int i = 1; i <= size; ++i) {
-			a[i] = items[(++nextFirst) % capacity];
+			a[i] = items[(++nextFirst) % this.capacity];
 		}
 		this.capacity = capacity;
 		nextFirst = 0;
