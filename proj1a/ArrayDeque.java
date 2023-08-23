@@ -14,13 +14,6 @@ public class ArrayDeque<T>
 		items = (T[]) new Object[capacity];
 		size = 0;
 	}
-	public ArrayDeque(ArrayDeque other) {
-		this.items = (T[]) other.items;
-		this.capacity = other.capacity;
-		this.nextFirst = other.nextFirst;
-		this.nextLast = other.nextLast;
-		this.size = other.size;
-	}
 
 	public ArrayDeque(ArrayDeque<T> other) {
 		items = (T[]) new Object[other.capacity];
