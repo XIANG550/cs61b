@@ -26,9 +26,15 @@ public class ArrayDeque<T>
 
 	private void resize(int capacity) {
 		T[] a = (T[]) new Object[capacity];
-		System.arraycopy(items, 0, a, 0, size);
+		// System.arraycopy() will not work because the array is circular
+		for (int i = 1; i <= size; ++i) {
+			a[i] = items[(++nextFirst) % capacity];
+		}
 		this.capacity = capacity;
+		nextFirst = 0;
+		nextLast = size + 1;
 		items = a;
+
 	}
 	
 	public void addFirst(T item) {
@@ -83,7 +89,12 @@ public class ArrayDeque<T>
 		nextFirst = (nextFirst + 1) % capacity; 
 		size--;
 		T result = items[nextFirst];
+		if (capacity >= 16 && size < capacity / 4) {
+			resize(capacity / 2);
+		}
 		return result;
+
+
 	}
 
 	public T removeLast() {
@@ -93,6 +104,10 @@ public class ArrayDeque<T>
 		nextLast = (nextLast - 1 + capacity) % capacity; 
 		size--;
 		T result = items[nextLast];
+
+		if (capacity >= 16 && size < capacity / 4) {
+			resize(capacity / 2);
+		}
 		return result;
 	}
 
