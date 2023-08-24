@@ -8,10 +8,10 @@ public class ArrayDeque<T>
 	private int capacity;
 
 	public ArrayDeque() {
-		capacity = 8;
+		items = (T[]) new Object[8];
+		this.capacity = items.length;
 		nextFirst = capacity - 1;
 		nextLast = 0;
-		items = (T[]) new Object[capacity];
 		size = 0;
 	}
 	/*
@@ -38,9 +38,7 @@ public class ArrayDeque<T>
 	
 	public void addFirst(T item) {
 		if (size == capacity) {
-			int factor = 2;
-			capacity *= 2;
-			resize(capacity);
+			resize(2 * capacity);
 		}
 		items[nextFirst] = item;
 		nextFirst = (nextFirst - 1 + capacity) % capacity; 
@@ -49,9 +47,7 @@ public class ArrayDeque<T>
 
 	public void addLast(T item) {
 		if(size == capacity) {
-			int factor = 2;
-			capacity *= 2;
-			resize(capacity);
+			resize(2 * capacity);
 		}
 		items[nextLast] = item;
 		nextLast = (nextLast + 1) % capacity; 
@@ -74,8 +70,8 @@ public class ArrayDeque<T>
 		for (int i = (nextFirst + 1) % capacity; i != nextLast-1; i = (i + 1) % capacity) {
 			System.out.print(items[i] + " ");
 		}
+		System.out.print(items[nextLast - 1]);
 		System.out.println();
-
 	}
 
 	public T removeFirst() {
