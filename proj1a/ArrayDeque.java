@@ -8,10 +8,10 @@ public class ArrayDeque<T>
 	private int capacity;
 
 	public ArrayDeque() {
-		items = (T[]) new Object[8];
-		this.capacity = items.length;
-		nextFirst = capacity - 1;
-		nextLast = 0;
+		capacity = 8;
+		items = (T[]) new Object[capacity];
+		nextFirst = 0;
+		nextLast = nextFirst + 1;
 		size = 0;
 	}
 	/*
