@@ -70,14 +70,12 @@ public class ArrayDeque<T>
 		if (isEmpty()) {
 			return;
 		}
-		int frontIndex = (nextFirst + 1) % capacity;
-		int backIndex = (nextLast - 1 + capacity) % capacity;
 
-		for (int i = 0; i < size; ++i) {
-			int transformedIndex = (i + frontIndex) % capacity;
-			System.out.print(items[transformedIndex] + " ");
+		for (int i = (nextFirst + 1) % capacity; i != nextLast-1; i = (i + 1) % capacity) {
+			System.out.print(items[i] + " ");
 		}
 		System.out.println();
+
 	}
 
 	public T removeFirst() {
