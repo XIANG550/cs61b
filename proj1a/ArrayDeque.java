@@ -28,7 +28,7 @@ public class ArrayDeque<T> {
 		}
 
 		this.nextFirst = 0;
-		this.nextLast = size + 1; 
+		this.nextLast = size + 1;
 
 		this.items = temp;
 		this.capacity = capacity;
@@ -54,20 +54,19 @@ public class ArrayDeque<T> {
 	public T removeFirst() {
 		if (isEmpty()) return null;
 
-		int first = (nextFirst + 1) % this.capacity; 
+		int first = (nextFirst + 1) % this.capacity;
 		T temp = items[first];
 
-    	items[first] = null; 
-    	nextFirst = first; 
-    	size--; 
+		items[first] = null;
+		nextFirst = first;
+		size--;
 
-    	double usageFactor = (double) size / capacity;
-    	if (size >= 16 && usageFactor < 0.25) {
-    		resize(capacity / 2);
-    	}
+		if (size >= 16 && size < capacity / 4) {
+			resize(capacity / 2);
+		}
 
-    	return temp;
-	}	
+		return temp;
+	}
 	public T removeLast() {
 		if (isEmpty()) return null;
 		int last = (nextLast - 1 + this.capacity) % this.capacity;
@@ -77,12 +76,11 @@ public class ArrayDeque<T> {
 		nextLast = last;
 		size--;
 
-		double usageFactor = (double) size / capacity;
-		if (size >= 16 && usageFactor < 0.25) {
-    		resize(capacity / 2);
-    	}
+		if (size >= 16 && size < capacity / 4) {
+			resize(capacity / 2);
+		}
 
-    	return temp;
+		return temp;
 	}
 	public T get(int index) {
 		if (isEmpty() || index < 0 || index > size - 1) return null;
