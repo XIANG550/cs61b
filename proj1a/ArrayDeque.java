@@ -61,7 +61,8 @@ public class ArrayDeque<T> {
 		nextFirst = first;
 		size--;
 
-		if (size >= 16 && size < capacity / 4) {
+		double usageFactor = (double) size / capacity;
+		if (capacity >= 16 && usageFactor < 0.25) {
 			resize(capacity / 2);
 		}
 
@@ -76,7 +77,8 @@ public class ArrayDeque<T> {
 		nextLast = last;
 		size--;
 
-		if (size >= 16 && size < capacity / 4) {
+		double usageFactor = (double) size / capacity;
+		if (capacity >= 16 && usageFactor < 0.25) {
 			resize(capacity / 2);
 		}
 
