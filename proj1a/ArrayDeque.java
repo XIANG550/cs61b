@@ -58,7 +58,7 @@ public class ArrayDeque<T> {
 
 	// Extra: For arrays of length 16 or more, your usage factor should always be at least 25%. For smaller arrays, your usage factor can be arbitrarily low.
 	public T removeFirst() {
-		if (isEmpty()) return;
+		if (isEmpty()) return null;
 
 		int first = (nextFirst + 1) % this.capacity; 
 		T temp = items[first];
@@ -75,7 +75,7 @@ public class ArrayDeque<T> {
     	return temp;
 	}	
 	public T removeLast() {
-		if (isEmpty()) return;
+		if (isEmpty()) return null;
 		int last = (nextLast - 1 + this.capacity) % this.capacity;
 		T temp = items[last];
 
