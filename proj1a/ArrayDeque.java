@@ -9,20 +9,20 @@ public class ArrayDeque<T> {
 	int nextLast;
 
 	public ArrayDeque(){
-		capcity = 8;
-		item = (T[]) new Object[capacity];
+		capacity  = 8;
+		items = (T[]) new Object[capacity];
 		nextFirst = 4;
 		nextLast = 5;
 		size = 0;
 	}
 
-	private boolean isEmpty() {
+	public boolean isEmpty() {
 		return size == 0;
 	}
-	private int size() {
+	public int size() {
 		return size;
 	}
-	private void resize(int capacity) {
+	public void resize(int capacity) {
 		T[] temp = (T[]) new Object[capacity];
 		int index = (nextFirst + 1) % this.capacity;
 
@@ -39,7 +39,7 @@ public class ArrayDeque<T> {
 
 	}
 
-	private void addFirst(T item) {
+	public void addFirst(T item) {
 		if (size == capacity) {
 			resize(2*capacity);
 		}
@@ -47,7 +47,7 @@ public class ArrayDeque<T> {
 		nextFirst = ((nextFirst - 1) + capacity) % this.capacity;
 		size++;
 	}
-	private void addLast(T item) {
+	public void addLast(T item) {
 		if (size == capacity) {
 			resize(2*capacity);
 		}
@@ -57,7 +57,7 @@ public class ArrayDeque<T> {
 	}	
 
 	// Extra: For arrays of length 16 or more, your usage factor should always be at least 25%. For smaller arrays, your usage factor can be arbitrarily low.
-	private T removeFirst() {
+	public T removeFirst() {
 		if (isEmpty()) return;
 
 		int first = (nextFirst + 1) % this.capacity; 
@@ -74,7 +74,7 @@ public class ArrayDeque<T> {
 
     	return temp;
 	}	
-	private T removeLast() {
+	public T removeLast() {
 		if (isEmpty()) return;
 		int last = (nextLast - 1 + this.capacity) % this.capacity;
 		T temp = items[last];
